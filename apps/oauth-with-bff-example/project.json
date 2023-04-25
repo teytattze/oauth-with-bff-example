@@ -1,0 +1,64 @@
+{
+  "name": "oauth-with-bff-example",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/oauth-with-bff-example/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/oauth-with-bff-example",
+        "main": "apps/oauth-with-bff-example/src/main.ts",
+        "tsConfig": "apps/oauth-with-bff-example/tsconfig.app.json",
+        "assets": ["apps/oauth-with-bff-example/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/oauth-with-bff-example/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "oauth-with-bff-example:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "oauth-with-bff-example:build:development"
+        },
+        "production": {
+          "buildTarget": "oauth-with-bff-example:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/oauth-with-bff-example/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/oauth-with-bff-example/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}
