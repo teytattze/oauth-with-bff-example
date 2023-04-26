@@ -13,8 +13,12 @@
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@oauth-with-bff-example/backend-auth": ["libs/backend-auth/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
